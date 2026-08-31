@@ -4,6 +4,7 @@ import sys
 import read
 import time
 import write
+import GUI
 from pathlib import Path
 #Default Variables
 version = "0.0.1a"
@@ -22,10 +23,11 @@ Usage:
 
 Options:
     -h --help           Show this help page
-    -V --verbose        Show more information (Live Logging)
-    -ver --version      Show version
+    -v --verbose        Show more information (Live Logging)
+    -V --version      Show version
     -o --output <file>  Specify output file
     -r --read           Read Image
+    -g --gui            Start in GUI
 How 2 Use:
     txt2img makes a image with color data based on the input .txt file or allows the reverse with the -r flag
     using the -r flag requires you to input an image and it will output a .txt file based on the data in the image
@@ -34,6 +36,9 @@ How 2 Use:
     sys.exit()
 
 #Program
+if "-g" in sys.argv or "--gui" in sys.argv:
+    GUI.startgui()
+
 if "-h" in sys.argv or "--help" in sys.argv:
     pgm_help(0)
     sys.exit(0)
