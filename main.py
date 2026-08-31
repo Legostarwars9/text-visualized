@@ -11,7 +11,8 @@ version = "0.0.1a"
 output = Path.cwd() / "output.png"
 cwd = Path.cwd()
 verbose = False
-
+x = 10
+y = 10
 #Def Funcs
 def pgm_help(synerr):
     if synerr == 1:
@@ -37,7 +38,8 @@ How 2 Use:
 
 #Program
 if "-g" in sys.argv or "--gui" in sys.argv:
-    GUI.startgui()
+    GUI.startgui(x,y)
+    sys.exit(0)
 
 if "-h" in sys.argv or "--help" in sys.argv:
     pgm_help(0)
@@ -52,7 +54,7 @@ if "-v" in sys.argv or "--verbose" in sys.argv:
 
 if sys.argv[1].startswith("-"):
     pgm_help(1)
-    sys.exit(0)
+    sys.exit(1)
 
 if not sys.argv[1].endswith((".png", ".txt")):
     print("Invalid file type")
