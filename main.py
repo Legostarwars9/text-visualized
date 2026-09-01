@@ -7,12 +7,10 @@ import write
 import GUI
 from pathlib import Path
 #Default Variables
-version = "0.0.1a"
+version = "0.0.2a"
 output = Path.cwd() / "output.png"
 cwd = Path.cwd()
 verbose = False
-x = 10
-y = 10
 #Def Funcs
 def pgm_help(synerr):
     if synerr == 1:
@@ -29,6 +27,7 @@ Options:
     -o --output <file>  Specify output file
     -r --read           Read Image
     -g --gui            Start in GUI
+    
 How 2 Use:
     txt2img makes a image with color data based on the input .txt file or allows the reverse with the -r flag
     using the -r flag requires you to input an image and it will output a .txt file based on the data in the image
@@ -37,8 +36,12 @@ How 2 Use:
     sys.exit()
 
 #Program
+if sys.stdin and not sys.stdin.isatty():
+    GUI.startgui()
+    sys.exit(0)
+
 if "-g" in sys.argv or "--gui" in sys.argv:
-    GUI.startgui(x,y)
+    GUI.startgui()
     sys.exit(0)
 
 if "-h" in sys.argv or "--help" in sys.argv:
@@ -51,6 +54,10 @@ if "-V" in sys.argv or "--version" in sys.argv:
 
 if "-v" in sys.argv or "--verbose" in sys.argv:
     verbose = True
+
+if len(sys.argv) < 2:
+    pgm_help(0)
+    sys.exit(0)
 
 if sys.argv[1].startswith("-"):
     pgm_help(1)
