@@ -21,3 +21,5 @@ def startgui():
     ttk.Scrollbar(frm).grid(column=11, row=4)
     ttk.Scale(frm).grid(column=13, row=4)
     root.mainloop()
+
+def test()
