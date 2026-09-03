@@ -7,7 +7,7 @@ import write
 import GUI
 from pathlib import Path
 #Default Variables
-version = "0.0.2a"
+version = "0.0.3a"
 output = Path.cwd() / "output.png"
 cwd = Path.cwd()
 verbose = False
@@ -23,7 +23,7 @@ Usage:
 Options:
     -h --help           Show this help page
     -v --verbose        Show more information (Live Logging)
-    -V --version      Show version
+    -V --version        Show version
     -o --output <file>  Specify output file
     -r --read           Read Image
     -g --gui            Start in GUI

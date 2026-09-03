@@ -1,10 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 import random as random
-import write
+from write import *
 import read
 def convert():
-    write.write(path)
+    write(path)
 
 output = "hi"
 def startgui():
@@ -21,5 +21,3 @@ def startgui():
     ttk.Scrollbar(frm).grid(column=11, row=4)
     ttk.Scale(frm).grid(column=13, row=4)
     root.mainloop()
-
-def test()
