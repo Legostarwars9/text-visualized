@@ -2,13 +2,13 @@ from PIL import Image
 from pathlib import Path
 from time import *
 import sys
-def read(path, verbose):
+def read(path, verbose=False, charset="latin-1"):
     path = Path(path)
     im = Image.open(path).convert("RGB")
     file = path.stem + path.suffix
     for infile in file:
          try:
-             print("Image Loaded")
+             idk = True
          except OSError:
             pass
     if verbose == True:

@@ -4,7 +4,7 @@ import math
 from time import *
 
 
-def write(path, verbose):
+def write(path, verbose=False, charset="latin-1"):
     path = Path(path)
     ltime = strftime(f"%m-%d_%H:%M:%S", localtime())
     imgfile = "output_image-" + ltime + ".png"

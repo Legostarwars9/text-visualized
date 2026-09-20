@@ -11,6 +11,7 @@ version = "0.0.4"
 output = Path.cwd() / "output.png"
 cwd = Path.cwd()
 verbose = False
+charset = "latin-1"
 
 #Def Funcs
 def pgm_help(synerr):
@@ -33,6 +34,8 @@ How 2 Use:
     txt2img makes a image with color data based on the input .txt file or allows the reverse with the -r flag
     using the -r flag requires you to input an image and it will output a .txt file based on the data in the image
     Only PNGs are supported.
+    
+    By default this program will use latin-1 encoding, though characters will most likely be lost if they are not in the latin-1 encoding language.
     """)
     sys.exit()
 
@@ -58,6 +61,9 @@ if "-V" in sys.argv or "--version" in sys.argv:
 
 if "-v" in sys.argv or "--verbose" in sys.argv:
     verbose = True
+
+if "-u" in sys.argv or "--utf-8" in sys.argv:
+    charset = "utf-8"
 
 if len(sys.argv) < 2:
     pgm_help(0)
@@ -86,7 +92,7 @@ if "-r" in sys.argv or "--read" in sys.argv:
         else:
             time.sleep(0.5)
         if Path.exists(Path(sys.argv[1]).resolve()):
-            read.read(Path(sys.argv[1]).resolve(), verbose)
+            read.read(Path(sys.argv[1]).resolve(), verbose, charset)
         else:
             print("File not found")
             sys.exit(0)
@@ -100,7 +106,7 @@ if not sys.argv[1].startswith(("/", "~")) and sys.argv[1].endswith(".txt"):
     else:
         time.sleep(0.5)
     if Path.exists(Path(sys.argv[1]).resolve()):
-        write.write(Path(sys.argv[1]).resolve(), verbose)
+        write.write(Path(sys.argv[1]).resolve(), verbose, charset)
     else:
         print("File not found")
         sys.exit(0)
