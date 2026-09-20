@@ -1,20 +1,31 @@
 from PIL import Image
 from pathlib import Path
+from time import *
+import sys
 def read(path, verbose):
-    image = Image.open(path).convert('RGB')
-    output_path = Path.cwd() / "output.txt"
-    number = 1
-    while output_path.exists():
-        output_path = Path.cwd() / f"output_{number}.txt"
-        number += 1
-    with open(output_path, "w", encoding="latin-1") as file:
-        for y in range(image.height):
-            for x in range(image.width):
-                r, g, b = image.getpixel((x, y))
-                if verbose == True:
-                    print(r, g, b)
-
-                file.write(chr(r))
-                file.write(chr(g))
-                file.write(chr(b))
-    print(f"Saved to {output_path}")
+    path = Path(path)
+    im = Image.open(path).convert("RGB")
+    file = path.stem + path.suffix
+    for infile in file:
+         try:
+             print("Image Loaded")
+         except OSError:
+            pass
+    if verbose == True:
+        for infile in file:
+            try:
+                print(file, im.format, f"{im.size}x{im.mode}")
+            except OSError:
+                pass
+    ltime = strftime(f"%m-%d_%H:%M:%S", localtime())
+    txtfile = "output_text-" + ltime + ".txt"
+    txt = open(txtfile, "x")
+    txt.close()
+    txt = open(txtfile, "a")
+    pixel = im.getdata()
+    for rgb in pixel:
+        r, g, b = rgb
+        txt.write(chr(r))
+        txt.write(chr(g))
+        txt.write(chr(b))
+    txt.close()

@@ -7,10 +7,11 @@ import write
 import GUI
 from pathlib import Path
 #Default Variables
-version = "0.0.3a"
+version = "0.0.4"
 output = Path.cwd() / "output.png"
 cwd = Path.cwd()
 verbose = False
+
 #Def Funcs
 def pgm_help(synerr):
     if synerr == 1:
@@ -43,6 +44,9 @@ if sys.stdin and not sys.stdin.isatty():
 if "-g" in sys.argv or "--gui" in sys.argv:
     GUI.startgui()
     sys.exit(0)
+
+if "-u" in sys.argv or "--url" in sys.argv:
+    url = True
 
 if "-h" in sys.argv or "--help" in sys.argv:
     pgm_help(0)
@@ -96,7 +100,7 @@ if not sys.argv[1].startswith(("/", "~")) and sys.argv[1].endswith(".txt"):
     else:
         time.sleep(0.5)
     if Path.exists(Path(sys.argv[1]).resolve()):
-        write.write(Path(sys.argv[1]).resolve())
+        write.write(Path(sys.argv[1]).resolve(), verbose)
     else:
         print("File not found")
         sys.exit(0)

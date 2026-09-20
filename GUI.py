@@ -3,8 +3,8 @@ from tkinter import ttk
 import random as random
 from write import *
 import read
-def convert():
-    write(path)
+#def convert():
+#    write(path)
 
 output = "hi"
 def startgui():
